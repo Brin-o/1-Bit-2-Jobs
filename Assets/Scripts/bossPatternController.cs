@@ -29,18 +29,11 @@ public class bossPatternController : MonoBehaviour
 
         if (timeToShoot <0)
         {
-            BulletHell();
+            Fire();
             timeToShoot = Random.Range(1f,6f);
             //numberOfProjectiles = 12;//Random.Range(12, 24);
         }
 
-    }
-
-    private void BulletHell ()
-    {
-        //startPoint = transform.position;
-        //SpawnProjectile(numberOfProjectiles);
-        Fire();
     }
 
 
