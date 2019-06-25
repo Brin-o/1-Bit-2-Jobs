@@ -28,18 +28,15 @@ public class BulletPool : MonoBehaviour
         {
             for (int i = 0; i < bullets.Count; i++)
             {
-                if (!bullets[i].activeInHierarchy)
+                if(bullets[i] != null)
                 {
-                    if (bullets[i] == null)
+                    if (!bullets[i].activeInHierarchy)
                     {
                         Debug.Log("Tralalala NUL");
                         return bullets[i];
                     }
-                    else
-                    {
-                        return bullets[i];
-                    }
                 }
+
             }
         }
 
@@ -49,6 +46,7 @@ public class BulletPool : MonoBehaviour
             bul.SetActive(false);
             bullets.Add(bul);
             return bul;
+            
         }
 
         return null;
