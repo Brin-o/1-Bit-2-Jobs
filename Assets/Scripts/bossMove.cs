@@ -29,14 +29,14 @@ public class bossMove : MonoBehaviour
 
     private void GoRight()
     {
-        if (rb.position.x > 5 & canTurn)
+        if (rb.position.x > 5.9 & canTurn)
         {
             TurnOppositeDirection();
         }
     }
     private void GoLeft()
     {
-        if (rb.position.x < -5 & canTurn)
+        if (rb.position.x < -5.9 & canTurn)
         {
             TurnOppositeDirection();
         }
