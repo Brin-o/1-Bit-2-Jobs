@@ -9,7 +9,6 @@ public class bossBullet : MonoBehaviour
     private Vector2 moveDirection;
     public float timeToKill = 5;
 
-
     private void OnEnable()
     {
         Invoke("Destroy", timeToKill);
@@ -37,3 +36,5 @@ public class bossBullet : MonoBehaviour
         CancelInvoke();
     }
 }
+
+

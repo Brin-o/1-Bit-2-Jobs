@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class playerHP : MonoBehaviour
 {
-    public int playerHealth = 5;
+    public int maxPlayerHealth = 5;
+    public int playerHealth;
+    public float HPprct;               
 
 
     public void playerTakeDamage(int damage)
     {
         playerHealth -= damage;
+        float HPprct = (float)maxPlayerHealth / (float)playerHealth;
 
         if (playerHealth <= 0)
             Die();
