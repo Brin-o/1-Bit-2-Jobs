@@ -18,7 +18,7 @@ public class playerHP : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-
+        print("You have lost");
         //you lose screen.
     }
 }

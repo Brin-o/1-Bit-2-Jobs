@@ -6,28 +6,41 @@ public class ABTrigger : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firePoint;
+    [Space]
+    private bool touchedBottom;
+    public LayerMask playerLayer;
 
-    // Update is called once per frame
-    //void Update()
-    //    {
-    //    //if collision with player start shoot
-    //    if (Input.GetButtonDown("Fire1"))
-    //        {
-    //            Shoot();
-    //        }
-    //    }
+    [Header("Collision")]
+    public float collisionRadius = 0.25f;
+    public Vector2 bottomOffset;
+    private Color debugCollisionColor = Color.red;
 
     private void OnCollisionEnter2D(Collision2D hitInfo)
     {
-        if (hitInfo.collider.name == "Player")
+        if (hitInfo.collider.name == "Player" && touchedBottom)
         {
             Shoot();
         }
     }
 
     void Shoot()
-        {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        }
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
 
+    private void FixedUpdate()
+    {
+        touchedBottom = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, playerLayer);
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        var positions = new Vector2[] { bottomOffset };
+
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
+
+    }
 }

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8683076748812939680}
   - component: {fileID: 5886948549774289684}
   - component: {fileID: 8887103232081351798}
-  - component: {fileID: 3607569119136519771}
+  - component: {fileID: -2114386364799841517}
+  - component: {fileID: -8772063776480137407}
   m_Layer: 0
   m_Name: bossBullet
   m_TagString: Untagged
@@ -111,7 +112,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8887026070898698918}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -130,18 +131,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
---- !u!114 &3607569119136519771
+--- !u!114 &-2114386364799841517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8887026070898698918}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15c8a0b0f1b572459c1ba519df5745d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7411234072c402249b3476f1844f7cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  damage: 1
   rb: {fileID: 5886948549774289684}
+--- !u!114 &-8772063776480137407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887026070898698918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611994e6070df2c40a7fdea2aee8719a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossBulletDMG: 1

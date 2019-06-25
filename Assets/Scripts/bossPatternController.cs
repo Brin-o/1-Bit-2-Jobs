@@ -27,8 +27,8 @@ public class bossPatternController : MonoBehaviour
         if (timeToShoot <0)
         {
             BulletHell();
-            timeToShoot = Random.Range(1f,6f);
-            numberOfProjectiles = Random.Range(12, 24);
+            timeToShoot = 2f; //Random.Range(1f,6f);
+            numberOfProjectiles = 6; //Random.Range(12, 24);
         }
 
     }
@@ -57,6 +57,7 @@ public class bossPatternController : MonoBehaviour
             tmpObj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
 
             angle += angleStep;
+
 
         }
         return;
