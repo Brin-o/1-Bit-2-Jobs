@@ -10,7 +10,7 @@ public class bossBulletCollision : MonoBehaviour
     {
         if (hitInfo.gameObject.tag == "Player")
             plyaerHit(hitInfo);
-        else if (hitInfo.gameObject.tag == "Enviorment")             //ne dela???
+        else if (hitInfo.gameObject.tag == "Environment")             //ne dela???
         {
             print("Hit the ground or something");
             Destroy(gameObject);

@@ -4,64 +4,27 @@ using UnityEngine;
 
 public class bossPatternController : MonoBehaviour
 {
-    /*
-    [Header("Projectile Settings")]
-    public float projectileSpeed;
-    public GameObject BossProjectile;
-
-    [Space]
-    public float timeToShoot = 3f;
-    public int numberOfProjectiles;
-
-
-    [Header("Private Variables")]
-    private Vector2 startPoint;
-    private const float raidus = 1f;
-
-
-   
-    */
-
-    public float timeToShoot = 3f;
+    public float shootInterval = 3f;
+    private float timeToShoot = 4f;
     void Update()
     {
         timeToShoot -= Time.deltaTime;
 
         if (timeToShoot <0)
         {
-            Fire();
-            timeToShoot = Random.Range(1f,6f);
+            BulletHell();
+            timeToShoot = shootInterval;
+            //timeToShoot = Random.Range(1f,6f);
             //numberOfProjectiles = 12;//Random.Range(12, 24);
         }
 
     }
 
-
-     /*
-    private void SpawnProjectile(int _numberOfProjectiles)
+    private void BulletHell ()
     {
-        float angleStep = 360f / _numberOfProjectiles;
-        float angle = 90f;
-        Debug.Log(numberOfProjectiles);
-
-        for (int i = 0; i <= _numberOfProjectiles -1; i++)
-        {
-            // Direction Calculations
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI )/ 180 * raidus);
-            float projectileDirYPosition = startPoint.x + Mathf.Cos((angle * Mathf.PI )/ 180 * raidus);
-
-            Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
-            Vector2 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
-
-            GameObject tmpObj = Instantiate(BossProjectile, startPoint, Quaternion.identity);
-            tmpObj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
-
-            angle += angleStep;
-
-        }
-        return;
+        Fire();
     }
-    */
+
     [SerializeField]
     private float bulletsAmount = 12;//Random.Range(12, 24);
 
@@ -70,11 +33,7 @@ public class bossPatternController : MonoBehaviour
 
     private Vector2 bulletMoveDirection;
 
-    /*
-    private void Start()
-    {
-        InvokeRepeating("Fire", 0f, 2f);
-    }*/
+
 
     private void Fire()
     {
