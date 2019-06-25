@@ -8,6 +8,16 @@ public class bossPatternController : MonoBehaviour
     public float shootInterval = 3f;
     public float timeToShoot = 4f;
 
+    [Header("Phase 1 Values")]
+    public float phase1TTS = 3f;
+
+
+    [Header ("Phase 2 Values")]
+    public float phase2TTS = 2f;
+
+    [Header("Phase 3 Values")]
+    public float phase3TTS = 0.35f;
+
     private enemy boss;
 
     private void Start()
@@ -28,20 +38,19 @@ public class bossPatternController : MonoBehaviour
             switch (getState())
             {
                 case boss_state.first:
-                    shootInterval = 5f;
-                    timeToShoot = 6f;
+                    shootInterval = phase1TTS;
+                    timeToShoot = phase1TTS;
                     break;
                 case boss_state.second:
-                    shootInterval = 3f;
-                    timeToShoot = 2f;
+                    shootInterval = phase2TTS;
+                    timeToShoot = phase2TTS;
                     break;
                 case boss_state.third:
-                    shootInterval = 1f;
-                    timeToShoot = 3f;
+                    shootInterval = phase3TTS;
+                    timeToShoot = phase3TTS;
                     break;
             }
-            //timeToShoot = Random.Range(1f,6f);
-            //numberOfProjectiles = 12;//Random.Range(12, 24);
+
         }
         Debug.Log(boss.getHealth());
 
