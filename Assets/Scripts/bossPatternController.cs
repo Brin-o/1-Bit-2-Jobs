@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class bossPatternController : MonoBehaviour
 {
     public float shootInterval = 3f;
@@ -19,12 +20,15 @@ public class bossPatternController : MonoBehaviour
     public float phase3TTS = 0.35f;
 
     private enemy boss;
+    private bossBullet instance;
 
     private void Start()
     {
+        //instance = gameObject.GetComponent<bossBullet>();
         boss = gameObject.GetComponent<enemy>();
     }
-    public enum boss_state {first, second, third, invalid};
+
+    public enum boss_state { first, second, third, invalid };
 
     void Update()
     {
@@ -44,20 +48,21 @@ public class bossPatternController : MonoBehaviour
                 case boss_state.second:
                     shootInterval = phase2TTS;
                     timeToShoot = phase2TTS;
+                    //instance.setSpeed(6f);
                     break;
                 case boss_state.third:
                     shootInterval = phase3TTS;
                     timeToShoot = phase3TTS;
+                    //instance.setSpeed(11f);
                     break;
             }
-
         }
-        Debug.Log(boss.getHealth());
 
     }
 
-    private boss_state getState()
+    public boss_state getState()
     {
+        //Debug.Log(instance.getSpeed());
         int health = boss.getHealth();
         if (Enumerable.Range(1, 3).Contains(health))
             return boss_state.third;
@@ -111,6 +116,7 @@ public class bossPatternController : MonoBehaviour
                 bul.transform.rotation = transform.rotation;
                 bul.SetActive(true);
                 bul.GetComponent<bossBullet>().setMoveDirection(bulDir);
+                bul.GetComponent<bossBullet>().setBulletSpeed(boss);
             }
 
             
