@@ -22,4 +22,9 @@ public class enemy : MonoBehaviour
 
         //play victory screen or something
     }
+
+    public int getHealth()
+    {
+        return health;
+    }
 }

@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class bossPatternController : MonoBehaviour
 {
     public float shootInterval = 3f;
-    private float timeToShoot = 4f;
+    public float timeToShoot = 4f;
+
+    private enemy boss;
+
+    private void Start()
+    {
+        boss = gameObject.GetComponent<enemy>();
+    }
+    public enum boss_state {first, second, third, invalid};
+
     void Update()
     {
         timeToShoot -= Time.deltaTime;
@@ -14,10 +24,42 @@ public class bossPatternController : MonoBehaviour
         {
             BulletHell();
             timeToShoot = shootInterval;
+
+            switch (getState())
+            {
+                case boss_state.first:
+                    shootInterval = 5f;
+                    timeToShoot = 6f;
+                    break;
+                case boss_state.second:
+                    shootInterval = 3f;
+                    timeToShoot = 2f;
+                    break;
+                case boss_state.third:
+                    shootInterval = 1f;
+                    timeToShoot = 3f;
+                    break;
+            }
             //timeToShoot = Random.Range(1f,6f);
             //numberOfProjectiles = 12;//Random.Range(12, 24);
         }
+        Debug.Log(boss.getHealth());
 
+    }
+
+    private boss_state getState()
+    {
+        int health = boss.getHealth();
+        if (Enumerable.Range(1, 3).Contains(health))
+            return boss_state.third;
+        else if (Enumerable.Range(3, 7).Contains(health))
+            return boss_state.second;
+        else if (Enumerable.Range(7, 10).Contains(health))
+            return boss_state.first;
+        else
+            return boss_state.invalid;
+        
+         
     }
 
     private void BulletHell ()
