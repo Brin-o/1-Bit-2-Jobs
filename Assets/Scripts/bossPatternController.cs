@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bossPatternController : MonoBehaviour
 {
+    /*
     [Header("Projectile Settings")]
     public float projectileSpeed;
     public GameObject BossProjectile;
@@ -19,7 +20,9 @@ public class bossPatternController : MonoBehaviour
 
 
    
+    */
 
+    public float timeToShoot = 3f;
     void Update()
     {
         timeToShoot -= Time.deltaTime;
@@ -27,28 +30,32 @@ public class bossPatternController : MonoBehaviour
         if (timeToShoot <0)
         {
             BulletHell();
-            timeToShoot = 2f; //Random.Range(1f,6f);
-            numberOfProjectiles = 6; //Random.Range(12, 24);
+            timeToShoot = Random.Range(1f,6f);
+            //numberOfProjectiles = 12;//Random.Range(12, 24);
         }
 
     }
 
     private void BulletHell ()
     {
-        startPoint = transform.position;
-        SpawnProjectile(numberOfProjectiles);
+        //startPoint = transform.position;
+        //SpawnProjectile(numberOfProjectiles);
+        Fire();
     }
 
+
+     /*
     private void SpawnProjectile(int _numberOfProjectiles)
     {
         float angleStep = 360f / _numberOfProjectiles;
-        float angle = 0f;
+        float angle = 90f;
+        Debug.Log(numberOfProjectiles);
 
         for (int i = 0; i <= _numberOfProjectiles -1; i++)
         {
             // Direction Calculations
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI / 180) * raidus);
-            float projectileDirYPosition = startPoint.x + Mathf.Cos((angle * Mathf.PI / 180) * raidus);
+            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI )/ 180 * raidus);
+            float projectileDirYPosition = startPoint.x + Mathf.Cos((angle * Mathf.PI )/ 180 * raidus);
 
             Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
             Vector2 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
@@ -58,8 +65,54 @@ public class bossPatternController : MonoBehaviour
 
             angle += angleStep;
 
-
         }
         return;
+    }
+    */
+    [SerializeField]
+    private float bulletsAmount = 12;//Random.Range(12, 24);
+
+    [SerializeField]
+    private float startAngle = 90f, endAngle = 270f;
+
+    private Vector2 bulletMoveDirection;
+
+    /*
+    private void Start()
+    {
+        InvokeRepeating("Fire", 0f, 2f);
+    }*/
+
+    private void Fire()
+    {
+        float angleStep = (endAngle - startAngle) / bulletsAmount;
+        float angle = startAngle;
+
+        for (int i = 0; i < bulletsAmount + 1; i++)
+        {
+            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+
+            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+
+            GameObject bul = BulletPool.bulletPoolInstance.getBullet();
+            if (bul == null)
+            {
+                Debug.Log("NULULULUUU");
+                return;
+            }
+            else
+            {
+                bul.transform.position = transform.position;
+                bul.transform.rotation = transform.rotation;
+                bul.SetActive(true);
+                bul.GetComponent<bossBullet>().setMoveDirection(bulDir);
+            }
+
+            
+
+            angle += angleStep;
+        }
     }
 }

@@ -1,0 +1,57 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BulletPool : MonoBehaviour
+{
+    public static BulletPool bulletPoolInstance;
+
+    [SerializeField]
+    private GameObject pooledBullet;
+    private bool notEnoughBulletsInPool = true;
+
+    private List<GameObject> bullets;
+
+    private void Awake()
+    {
+        bulletPoolInstance = this;
+    }
+
+    private void Start()
+    {
+        bullets = new List<GameObject>();
+    }
+
+    public GameObject getBullet()
+    {
+        if (bullets.Count > 0)
+        {
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                if (!bullets[i].activeInHierarchy)
+                {
+                    if (bullets[i] == null)
+                    {
+                        Debug.Log("Tralalala NUL");
+                        return bullets[i];
+                    }
+                    else
+                    {
+                        return bullets[i];
+                    }
+                }
+            }
+        }
+
+        if (notEnoughBulletsInPool)
+        {
+            GameObject bul = Instantiate(pooledBullet);
+            bul.SetActive(false);
+            bullets.Add(bul);
+            return bul;
+        }
+
+        return null;
+    }
+    
+}
