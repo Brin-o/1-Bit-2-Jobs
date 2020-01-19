@@ -1,0 +1,497 @@
+/*Start global*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+    font-family: 'Roboto', serif;
+    color: #eee;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background: url("images/sitebg1.png") no-repeat center;
+    background-size: cover;
+    background-color: #231F20;
+}
+
+section{
+    padding: 6rem;
+}
+
+a{
+    text-decoration: none;
+    color: #eee;
+}
+
+p{
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+img{
+    width: 100%;
+}
+/*End global*/
+
+/*Start reusable*/
+.container{
+    width: 80%;
+    max-width: 155rem;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-heading{
+    text-align: center;
+    margin-bottom: 10rem;
+}
+.section-heading h1{
+    font-size: 5rem;
+    font-family: 'Roboto Slab';
+    color: rgba(255,255,255, 0.3);
+    text-transform: uppercase;
+    font-weight: 300;
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+}
+
+.section-heading h1::before,
+.section-heading h1::after{
+    content: '';
+    position: absolute;
+    bottom: -.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 1)
+}
+.section-heading h1::before{
+    width: 10rem;
+    height: 3px;
+    border-radius: .8rem;
+}
+.section-heading h1::after{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    bottom: -1rem;
+}
+.section-heading h6{
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+.has-margin-right{
+    margin-right: 7.5rem;
+}
+
+.button-container{
+    margin-top: 2rem;
+}
+.button{
+    border: 1px solid #AADBCC;
+    border-radius: 50px;
+    color: #AADBCC;
+    background: none;
+    padding: 1rem 2.5rem;
+    font-family: 'Roboto';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 0.8rem;
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+}
+.button:hover{
+    color: #191617;
+}
+.button::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #AADBCC;
+    z-index: -1;
+    transition: 0.5s;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+.button:hover::before{
+    height: 180%;
+}
+
+.rightalign h1, .rightalign h6, .rightalign{
+    text-align: right;
+
+}
+/*End reusable*/
+
+/*Start header*/
+header{
+    width: 100%;
+    height: 100vh;
+}
+.top-nav{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 50;
+
+    top: -100vh;
+
+    background-color: #191617;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    transition: all 650ms cubic-bezier(1,0,01);
+}
+.nav-list{
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li{
+    margin: 0 2rem;
+}
+
+.media-links{
+    text-align: center;
+    margin: 2.5rem;
+}
+
+.nav-link{
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 5rem;
+    padding: 1rem;
+}
+.nav-link:hover,
+.nav-link:focus{
+    background: #AADBCC;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-nav.open{
+    top: 0;
+    border-radius: initial;
+}
+
+.menu-toggler{
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1500;
+    transition: transform 600ms ease-out;
+}
+
+.menu-toggler.open{
+    transform: rotate(-45deg)
+}
+
+.bar{
+    background: #eee;
+    width: 100%;
+    height: 4px;
+    border-radius: .8rem;
+}
+.bar.half{
+    width: 50%;
+}
+.bar.start{
+    transform-origin: right;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+.open .bar.start{
+    transform: rotate(-450deg) translateX(.8rem);
+}
+
+.bar.end{
+    align-self: flex-end;
+    transform-origin: left;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+.open .bar.end{
+    transform: rotate(-450deg) translateX(-.8rem);
+}
+.bar:hover{
+    background: #AADBCC;
+}
+
+
+.landing-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+
+}
+.landing-text h1{
+    font-size: 14rem;
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 900;
+    padding: 1rem;
+    user-select: none;
+}
+.landing-text h6{
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: 'Roboto' sans-serif;
+    font-weight: 300;
+}
+
+.landing-text h7{
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Roboto' sans-serif;
+}
+/*End header*/
+
+/*Start about*/
+.about .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.about-heading{
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 0;
+    margin-bottom: 6rem;
+}
+
+.about-heading h1{
+    font-size: 10rem;
+    opacity: .3;
+}
+.about-heading h6{
+    font-size: 2rem;
+}
+
+.profile-img{
+    flex: 1;
+    margin-right: 5rem;
+    max-width: 50%;
+    height: auto;
+}
+.about-details{
+    flex: 1;
+}
+
+/*End about*/
+
+/*Start services*/
+/*End services*/
+
+/*Start portfolio*/
+.portfolio-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+.portfolio-item:last-child{
+    margin-bottom: 0;
+}
+
+.portfolio-img {
+    flex: 1;
+    width: 50rem;
+}
+
+.portfolio-description{
+    flex: 1;
+}
+
+.portfolio-description h1{
+    font-size: 3rem;
+    font-family: 'Roboto Slab';
+    font-weight: 400;
+    margin: .55rem 0;
+}
+
+.portfolio-description h6{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.75;
+
+}
+
+.portfolio-description p{
+    text-align: justify;
+    text-justify: auto;
+}
+
+.portfolio-description .cta{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: steelblue;
+}
+.portfolio-description .cta:hover{
+    color: #2f67cd;
+    transition: color 650ms;
+}
+/*End services*/
+
+/*Start timeline*/
+/*End timeline*/
+
+/*Start contact*/
+/*End contact*/
+
+/*Start footer*/
+.copyright{
+    width: 100%;
+    text-align: center;
+    background-color: #000000;
+    padding: 2rem;
+    position: relative;
+}
+
+.up{
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    background-color: #eee;
+    top: -2.5rem;
+    right: 5rem;
+    border-radius: 100%;
+    display: flex;
+    animation: pulse 4s infinite;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.up:hover{
+    background-color: #AADBCC;
+    transition: 0.5s;
+}
+.up i {
+    color: #16162d;
+    font-size: 2rem;
+    margin: auto;
+}
+.copyright p{
+    font-size: 1;
+    font-family: 'Roboto Slab';
+}
+/*End footer*/
+
+/*Start animations*/
+@keyframes pulse {
+    0%{
+        box-shadow: 0 0 0 0 rgba(170, 219, 204, 0.99);
+    }
+    70%{
+        box-shadow: 0 0 0 2rem rgba(170, 219, 204, 0);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(170, 219, 204, 0);
+    }
+}
+/*End animations*/
+
+/*Start media queries*/
+@media screen and (max-width: 768px){
+    body{
+        background: url("images/sitebg2.png") no-repeat center;
+        background-size: cover;
+        background-color: #231F20;
+    }
+    .landing-text h1{
+        font-size: 12rem;
+    }
+    .landing-text h6{
+        font-size: 1.7rem;
+    }
+    .nav-list{
+        flex-direction: column;
+        text-align: center;
+    }
+    li{
+        margin: 2rem 0;
+    }
+    .nav-link{
+        font-size: 4.5rem;
+    }
+
+    .about-heading h1{
+        font-size: 8rem;
+    }
+    .section-heading h1{
+        font-size: 3rem;
+    }
+    .about-details .nav-list{
+        flex-direction: initial;
+    }
+    .about-details li{
+        margin: 0 2rem;
+    }
+    .icon-container{
+        width: 7rem;
+        height: 7rem;
+    }
+    .icon-container i{
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .menu-toggler{
+        top: 2rem;
+        right: 2rem;
+    }
+    .landing-text h1{
+        font-size: 8rem;
+    }
+    .landing-text h6{
+        font-size: 1.4rem;
+    }
+    .nav-link{
+        font-size: 3.5rem;
+    }
+    .about .container{
+        flex-direction: column;
+    }
+    .profile-img{
+        margin: 0 0 7rem 0;
+        max-width: 100%;
+    }
+    .portfolio-item{
+        flex-direction: column;
+    }
+    .portfolio-img{
+        margin: 0 0 2rem 0;
+        max-width: 100%;
+        order: 1;
+    }
+    .portfolio-description{
+        margin: 0;
+        order: 2;
+    }
+    .up{
+        right: 2rem;
+    }
+}
+/*End media queries*/
